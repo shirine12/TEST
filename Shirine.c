@@ -12,8 +12,8 @@ int compteur(int* x){
     int *i=&x;
     while(x>0){
         *i=*i-1;
-        sleep(0.5);
-        Locate(0,15);
+        sleep(1);
+        gotoligcol(0,15);
         printf("        Il reste %d secondes pour completer le niveau.        ",*i);
     }
 }
