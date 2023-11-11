@@ -112,6 +112,17 @@ int main() {
                                            "                SCORE = %d                   VIES=%d\n", TempsREST,S,Vie);
                                     DeplacementBalle(&balleX, &balleY, &vx, &vy);
                                 }
+//si la balle touche snoopy alors il perd une vie et la partie recommence//
+                              if (balleX==x&&balleY==y){ 
+                                Vie=Vie-1;
+                                printf("---GAME OVER---\n"
+                                       "Il vous reste %d vies.\n"
+                                       "Appuyer sur Z pour recommencer\n",Vie);
+                                do{
+                                    scanf("%c", &touche);
+                                }while (touche!="z");
+                                S=0;
+                            }
                             }
                             else {
                                 Vie=Vie-1;
