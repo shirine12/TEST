@@ -6,34 +6,14 @@
 #include "LIBRAIRIE SS PROG.h"
 #include <windows.h>
 #include <conio.h>
+#include <unistd.h>
 #endif
 #include <stdio.h>
 
-int MyGetch()
-{
-#ifdef _WIN32
-    return getch();
-#endif
-// trouver alternative hors Windows.
+int CalculScoreNiv(int S, int t){
+    return S*t;
 }
 
-void TryMove(int* x,int* y,int vx,int vy, unsigned char tab[Nc][Nl], int C,int* S) {
-    if (tab[*x + vx][*y + vy] == 'X') {
-        if (tab[*x + vx][*y + vy] == tab[*x + vx + vx][*y + vy + vy]) {
-            return;
-        }
-        if (*x+vx==0 || *x+vx==9 ||*y+vy==0 || *y+vy==9){
-            return;
-        }
-        else {
-            tab[*x + vx+ vx][*y + vy + vy] = 'X';
-        }
-    }
-    if (tab[*x + vx][*y + vy]=='0'){
-        *S=*S+1;
-    }
-
-    tab[*x][*y]=' ';
-    (*x) += vx;
-    (*y) += vy;
+int CalculScorePartie(int S1, int S2, int S3){
+    return S1+S2+S3;
 }
