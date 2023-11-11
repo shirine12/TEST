@@ -67,28 +67,6 @@ void menu(){
            "-------------------------------------------\n");
 }
 
-void Locate(int x,int y)
-{
-#ifdef _WIN32
-    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD C;
-    C.X=(SHORT)x;
-    C.Y=(SHORT)y;
-    SetConsoleCursorPosition(H,C);
-#endif
-    // trouver alternative hors Windows.
-}
-
-void gotoligcol( int lig, int col )
-{
-// ressources
-    COORD mycoord;
-    mycoord.X = col;
-    mycoord.Y = lig;
-    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
-}
-
-
 void InitialiserVie(int* a) {
     *a = 3;
 }
