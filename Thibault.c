@@ -4,21 +4,7 @@
 #include <windows.h>
 #include <unistd.h>
 
-
-//déplacements//
-
-void gotoligcol( int lig, int col )
-{
-// ressources
-    COORD mycoord;
-    mycoord.X = col;
-    mycoord.Y = lig;
-    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
-}
-
-
 void DeplacementBalle(int* balleX,int* balleY,int*vx, int*vy){
-
         *balleX = *balleX + *vx;
         *balleY = *balleY + *vy;
 
