@@ -11,6 +11,8 @@
 #include <conio.h>
 #endif
 #include <stdio.h>
+#define MAGENTA_COLOR "\x1b[35m"
+#define RESET_COLOR "\x1b[0m"
 
 void menu(){
     printf("-------------------------------------------\n"
@@ -80,12 +82,12 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl])
         for(j=0;j<Nl;j++)
         {
             if (i==x && j==y)
-                printf("3");
+                printf("%c", 0xF4);
             if ((i==balleX)&&(j==balleY)){
-                printf("o");
+                printf(MAGENTA_COLOR "%c", 0x9D );
             }
             else
-                printf("%c",tab[i][j]);
+                printf(RESET_COLOR"%c",tab[i][j]);
         }
         printf("\n");
     }
