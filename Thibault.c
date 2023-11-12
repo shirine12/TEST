@@ -9,15 +9,18 @@ void DeplacementBalle(int* balleX,int* balleY,int*vx, int*vy, unsigned char tab[
     if ((tab[*balleX+*vx][*balleY+*vy]=='0') || (tab[*balleX+*vx][*balleY+*vy]=='X')){
         *vy = *vy*(-1);
         *vx = -1 * *vx;
+        system("cls");
     }
         *balleX = *balleX + *vx;
         *balleY = *balleY + *vy;
 
         if (*balleY <= 0 || *balleY >= 19) {//(hauteur matrice-1)
             *vy = *vy*(-1); // Inverse la direction verticale
+        system("cls");
         }
         if (*balleX <= 0 || *balleX >= 9) {//(largeur matrice-1)
             *vx = -1 * *vx; // Inverse la direction horizontale
+         system("cls");
         }
 }
 
