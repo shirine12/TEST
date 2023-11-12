@@ -84,6 +84,7 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl])
             if (i==x && j==y)
                 printf("%c", 0xF4);
             if ((i==balleX)&&(j==balleY)){
+//Couleur MAGENTA balle//
                 printf(MAGENTA_COLOR "%c", 0x9D );
             }
             else
