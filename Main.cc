@@ -7,15 +7,15 @@
 int main() {
     //Mise en place des niveaux
     unsigned char tabNiv1[Nc][Nl] = {
-            "0   W              0",
-            "                W   ",
+            "0                  0",
+            "                    ",
             "         X          ",
             "        X X         ",
-            " W     X   X        ",
+            "       X   X        ",
             "        X X         ",
             "         X          ",
-            " W            W     ",
-            "  WW                ",
+            "                    ",
+            "                    ",
             "0                  0",
     };
 
@@ -34,86 +34,88 @@ int main() {
         menu();
         scanf("%d",&A);
         //if (kbhit()) {
-            switch (A) {
+        switch (A) {
 
 
-                case 1 :
-                    while (Ret < 1) {
-                        printf("Les regles sont les suivantes :\n"
-                               "Pour avancer, appuyez sur z.\n"
-                               "Pour reculer, appuyez sur s.\n"
-                               "Pour aller vers la gauche, appuyez sur s.\n"
-                               "Pour aller vers la droite, appuyez sur d.\n"
-                               "Appuyer sur P pour mettre pause.\n\n"
-                               "Appuyer sur 1 pour retourner au menu .\n\n");
-                        scanf("%d", &Ret);
-                        if (Ret != 1) {
-                            printf("Ce n'est pas le bon bouton!\n");
-                        }
+            case 1 :
+                while (Ret < 1) {
+                    printf("Les regles sont les suivantes :\n"
+                           "Pour avancer, appuyez sur z.\n"
+                           "Pour reculer, appuyez sur s.\n"
+                           "Pour aller vers la gauche, appuyez sur s.\n"
+                           "Pour aller vers la droite, appuyez sur d.\n"
+                           "Appuyer sur P pour mettre pause.\n\n"
+                           "Appuyer sur 1 pour retourner au menu .\n\n");
+                    scanf("%d", &Ret);
+                    if (Ret != 1) {
+                        printf("Ce n'est pas le bon bouton!\n");
                     }
-                    break;
+                }
+                break;
 
 
-                case 2 :
-                    printf("Commencez votre aventure! Bienvenue sur le Niveau 1.\n"
-                           "Enregistrer cette partie dans un des slots disponible.\n"
-                           "Appuyer sur Z pour confirmer (il vous faudra sauvegarder dans le menu pause, sinon vous perdrez vos progres).\n");
+            case 2 :
+                printf("Commencez votre aventure! Bienvenue sur le Niveau 1.\n"
+                       "Enregistrer cette partie dans un des slots disponible.\n"
+                       "Appuyer sur Z pour confirmer (il vous faudra sauvegarder dans le menu pause, sinon vous perdrez vos progres).\n");
 
-                    int TempsREST = 10;
-                    int S = 0;
-                    char touche;
-                    int balleX = 5;
-                    int balleY = 7;
-                    int vx;
-                    int vy;
+                int TempsREST = 120;
+                int S = 0;
+                char touche;
+                int balleX = 5;
+                int balleY = 7;
+                int vx;
+                int vy;
 
-                    //Initialisation de Snoopy
-                    int x, y;
-                    int Score1;
-                    x = 4;
-                    y = 9;
-                    vx = 1;
-                    vy = 1;
+                //Initialisation de Snoopy et la direction de la balle
+                int x, y;
+                int Score1;
+                x = 4;
+                y = 9;
+                vx = 1;
+                vy = 1;
 
-                    touche = 0;
-                    system("cls");
-                    InitialiserVie(&Vie);
-                    while (Vie!=0){
-                        while (S!= 4) {
-                            if (TempsREST != 0) {
-                                if (_kbhit()) {
-                                    touche = MyGetch();
-                                    switch (touche) {
-                                        case 'q':
-                                            TryMove(&x, &y, 0, -1, tabNiv1, 1, &S);
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
-                                            break;
-                                        case 'd':
-                                            TryMove(&x, &y, 0, 1, tabNiv1, 3, &S);
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
-                                            break;
-                                        case 'z':
-                                            TryMove(&x, &y, -1, 0, tabNiv1, 2, &S);
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
-                                            break;
-                                        case 's':
-                                            TryMove(&x, &y, 1, 0, tabNiv1, 4, &S);
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
-                                        default:
-                                            break;
-                                    }
+                touche = 0;
+                system("cls");
+                InitialiserVie(&Vie);
+                while (Vie!=0){
+                    while (S!= 4) {
+                        if (TempsREST != 0) {
+                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                            if (_kbhit()) {
+                                touche = MyGetch();
+                                switch (touche) {
+                                    case 'q':
+                                        TryMove(&x, &y, 0, -1, tabNiv1, 1, &S);
+                                        AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        break;
+                                    case 'd':
+                                        TryMove(&x, &y, 0, 1, tabNiv1, 3, &S);
+                                        AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        break;
+                                    case 'z':
+                                        TryMove(&x, &y, -1, 0, tabNiv1, 2, &S);
+                                        AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        break;
+                                    case 's':
+                                        TryMove(&x, &y, 1, 0, tabNiv1, 4, &S);
+                                        AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                    default:
+                                        break;
                                 }
-                                else {
-                                    AfficherNiv(x, y, balleX, balleY, tabNiv1);
-                                    sleep(1);
-                                    TempsREST = TempsREST - 1;
-                                    gotoligcol(15, 15);
-                                    printf("           Il reste %d secondes pour completer le niveau.        \n"
-                                           "                SCORE = %d                   VIES=%d\n", TempsREST,S,Vie);
-                                    DeplacementBalle(&balleX, &balleY, &vx, &vy);
-                                }
+                            }
+                            else {
+                               sleep(1);
+                                TempsREST = TempsREST - 1;
+                                gotoligcol(15, 15);
+                                printf("           Il reste %d secondes pour completer le niveau.        \n"
+                                       "                SCORE = %d                   VIES=%d\n", TempsREST,S,Vie);
+                                DeplacementBalle(&balleX, &balleY, &vx, &vy, tabNiv1);
+                            }
+
+
 //si la balle touche snoopy alors il perd une vie et la partie recommence//
-                              if (balleX==x&&balleY==y){ 
+                            if (balleX==x&&balleY==y){
                                 Vie=Vie-1;
                                 printf("---GAME OVER---\n"
                                        "Il vous reste %d vies.\n"
@@ -123,7 +125,8 @@ int main() {
                                 }while (touche!="z");
                                 S=0;
                             }
-                            if(x=='W'&&y=='W'){
+                        }
+                        else {
                             Vie=Vie-1;
                             printf("---GAME OVER---\n"
                                    "Il vous reste %d vies.\n"
@@ -132,54 +135,43 @@ int main() {
                                 scanf("%c", &touche);
                             }while (touche!="z");
                             S=0;
-                            }
-                            }
-                            else {
-                                Vie=Vie-1;
-                                printf("---GAME OVER---\n"
-                                       "Il vous reste %d vies.\n"
-                                       "Appuyer sur Z pour recommencer\n",Vie);
-                                do{
-                                    scanf("%c", &touche);
-                                }while (touche!="z");
-                                S=0;
-                            }
                         }
                     }
+                }
 
-                    if (S == 4) {
-                        Score1=CalculScoreNiv(S,TempsREST);
-                        JeuGAGNE(Vie,Score1);
-                        scanf("%c", &touche);
-                    }
-                    break;
-
-
-                case 3 :
-                    printf("Entrez le mot de passe de votre partie pour y acceder :\n");
-                    break;
+                if (S == 4) {
+                    Score1=CalculScoreNiv(S,TempsREST);
+                    JeuGAGNE(Vie,Score1);
+                    scanf("%c", &touche);
+                }
+                break;
 
 
-                case 4 :
-                    printf("Les mots de passe sont les suivants :\n");
-                    break;
+            case 3 :
+                printf("Entrez le mot de passe de votre partie pour y acceder :\n");
+                break;
 
 
-                case 5 :
-                    printf("Les scores sont les suivants : \n");
-                    break;
+            case 4 :
+                printf("Les mots de passe sont les suivants :\n");
+                break;
 
 
-                case 6 :
-                    printf("Tres bien, au revoir!\n");
-                    break;
+            case 5 :
+                printf("Les scores sont les suivants : \n");
+                break;
 
 
-                default :
-                    printf("Veuillez selectionner une valeur correcte.\n");
+            case 6 :
+                printf("Tres bien, au revoir!\n");
+                break;
 
-            }
-        //}
+
+            default :
+                printf("Veuillez selectionner une valeur correcte.\n");
+
+        }
+
     } while ((A<2)||(A>6)||(A==1));
 
     return 0;
