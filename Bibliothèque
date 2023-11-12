@@ -123,6 +123,16 @@ int main() {
                                 }while (touche!="z");
                                 S=0;
                             }
+                            if(x=='W'&&y=='W'){
+                            Vie=Vie-1;
+                            printf("---GAME OVER---\n"
+                                   "Il vous reste %d vies.\n"
+                                   "Appuyer sur Z pour recommencer\n",Vie);
+                            do{
+                                scanf("%c", &touche);
+                            }while (touche!="z");
+                            S=0;
+                            }
                             }
                             else {
                                 Vie=Vie-1;
