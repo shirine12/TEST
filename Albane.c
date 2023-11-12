@@ -91,14 +91,15 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl])
                 printf(MAGENTA_COLOR "%c", 0x9D );
             }
             if (tab[i][j]=="X"){
-                printf("%c",0x03);
+                tab[i][j]=NULL;
+                printf("%c",0x6A);
+                tab[i][j]="X";
             }
             else
                 printf(RESET_COLOR"%c",tab[i][j]);
         }
         printf("\n");
     }
-ShowConsoleCursor(FALSE);
 }
 
 void JeuGAGNE(int v, int S){
@@ -129,6 +130,9 @@ void TryMove(int* x,int* y,int vx,int vy, unsigned char tab[Nc][Nl], int C,int* 
         }
         tab[*x + vx+ vx][*y + vy + vy] = 'X';
         tab[*x + vx][*y + vy] = ' ';
+    }
+    if (tab[*x + vx][*y + vy] == 'Y') {
+        return;
     }
     if (*x+vx==-1 || *x+vx==10 ||*y+vy==0 || *y+vy==20){
         return;
