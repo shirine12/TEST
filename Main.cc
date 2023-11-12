@@ -170,6 +170,7 @@ int main() {
 
             case 6 :
                 printf("Tres bien, au revoir!\n");
+                sleep(4);
                 break;
 
 
