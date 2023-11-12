@@ -7,15 +7,15 @@
 int main() {
     //Mise en place des niveaux
     unsigned char tabNiv1[Nc][Nl] = {
-            "0                  0",
-            "                    ",
+            "0   W              0",
+            "                W   ",
             "         X          ",
             "        X X         ",
-            "       X   X        ",
+            " W     X   X        ",
             "        X X         ",
             "         X          ",
-            "                    ",
-            "                    ",
+            " W            W     ",
+            "  WW                ",
             "0                  0",
     };
 
