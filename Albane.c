@@ -16,13 +16,13 @@
 
 void menu(){
     printf("-------------------------------------------\n"
-            "             BIENVENUE SUR...\n"
-            "\n"
-            "               LA REVANCHE\n"
-            "                    DE\n"
-            "\n"
-            "               S N O O P Y\n"
-            "\n"
+           "             BIENVENUE SUR...\n"
+           "\n"
+           "               LA REVANCHE\n"
+           "                    DE\n"
+           "\n"
+           "               S N O O P Y\n"
+           "\n"
            "--------------             ----------------\n"
            "                                       \n"
            "                  ........           \n"
@@ -53,7 +53,7 @@ void menu(){
            "--------------             ----------------\n"
            "                              \n"
            "                  ........    \n"
-           "                 . /    .....        \n"
+           "                 / /    .....        \n"
            "                 . .   ......        \n"
            "             ....       .....         \n"
            "             .     ..._  ....       \n"
@@ -81,11 +81,17 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl])
     {
         for(j=0;j<Nl;j++)
         {
-            if (i==x && j==y)
+            tab[x][y]=NULL;
+            tab[balleX][balleY]=NULL;
+            if (i==x && j==y){
                 printf("%c", 0xF4);
-            if ((i==balleX)&&(j==balleY)){
-//Couleur MAGENTA balle//
+            }
+
+            if (i==balleX && j==balleY){
                 printf(MAGENTA_COLOR "%c", 0x9D );
+            }
+            if (tab[i][j]=="X"){
+                printf("%c",0x03);
             }
             else
                 printf(RESET_COLOR"%c",tab[i][j]);
@@ -121,6 +127,7 @@ void TryMove(int* x,int* y,int vx,int vy, unsigned char tab[Nc][Nl], int C,int* 
             return;
         }
         tab[*x + vx+ vx][*y + vy + vy] = 'X';
+        tab[*x + vx][*y + vy] = ' ';
     }
     if (*x+vx==-1 || *x+vx==10 ||*y+vy==0 || *y+vy==20){
         return;
@@ -133,8 +140,9 @@ void TryMove(int* x,int* y,int vx,int vy, unsigned char tab[Nc][Nl], int C,int* 
         sleep(1);
         system("cls");
     }
-
     tab[*x][*y]=' ';
     (*x) += vx;
     (*y) += vy;
+
+
 }
