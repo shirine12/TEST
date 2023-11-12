@@ -98,6 +98,7 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl])
         }
         printf("\n");
     }
+ShowConsoleCursor(FALSE);
 }
 
 void JeuGAGNE(int v, int S){
