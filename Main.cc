@@ -7,7 +7,7 @@
 int main() {
     //Mise en place des niveaux
     unsigned char tabNiv1[Nc][Nl] = {
-            "0                  0",
+            " 0                 0",
             "                    ",
             "         X          ",
             "        X X         ",
@@ -16,7 +16,7 @@ int main() {
             "         X          ",
             "                    ",
             "                    ",
-            "0                  0",
+            " 0                 0",
     };
 
     typedef struct Partie{
@@ -78,7 +78,7 @@ int main() {
                 touche = 0;
                 system("cls");
                 InitialiserVie(&Vie);
-                while (Vie!=0){
+               while (Vie!=0){
                     while (S!= 4) {
                         if (TempsREST != 0) {
                             AfficherNiv(x, y, balleX, balleY, tabNiv1);
@@ -88,24 +88,28 @@ int main() {
                                     case 'q':
                                         TryMove(&x, &y, 0, -1, tabNiv1, 1, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        system("cls");
                                         break;
                                     case 'd':
                                         TryMove(&x, &y, 0, 1, tabNiv1, 3, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        system("cls");
                                         break;
                                     case 'z':
                                         TryMove(&x, &y, -1, 0, tabNiv1, 2, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        system("cls");
                                         break;
                                     case 's':
                                         TryMove(&x, &y, 1, 0, tabNiv1, 4, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        system("cls");
                                     default:
                                         break;
                                 }
                             }
                             else {
-                               sleep(1);
+                                sleep(1);
                                 TempsREST = TempsREST - 1;
                                 gotoligcol(15, 15);
                                 printf("           Il reste %d secondes pour completer le niveau.        \n"
@@ -119,10 +123,10 @@ int main() {
                                 Vie=Vie-1;
                                 printf("---GAME OVER---\n"
                                        "Il vous reste %d vies.\n"
-                                       "Appuyer sur Z pour recommencer\n",Vie);
+                                       "Entrer 2 pour recommencer\n",Vie);
                                 do{
-                                    scanf("%c", &touche);
-                                }while (touche!="z");
+                                    scanf("%d", &w);
+                                }while (w!=2);
                                 S=0;
                             }
                         }
@@ -130,21 +134,23 @@ int main() {
                             Vie=Vie-1;
                             printf("---GAME OVER---\n"
                                    "Il vous reste %d vies.\n"
-                                   "Appuyer sur Z pour recommencer\n",Vie);
+                                   "Appuyer sur z pour recommencer\n",Vie);
                             do{
                                 scanf("%c", &touche);
                             }while (touche!="z");
                             S=0;
                         }
                     }
+                    if (S == 4) {
+                        Score1=CalculScoreNiv(S,TempsREST);
+                        JeuGAGNE(Vie,Score1);
+                        scanf("%c", &touche);
+                    }
+                    break;
                 }
 
-                if (S == 4) {
-                    Score1=CalculScoreNiv(S,TempsREST);
-                    JeuGAGNE(Vie,Score1);
-                    scanf("%c", &touche);
-                }
-                break;
+
+
 
 
             case 3 :
