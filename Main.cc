@@ -9,11 +9,11 @@ int main() {
     unsigned char tabNiv1[Nc][Nl] = {
             " 0                 0",
             "                    ",
-            "         X          ",
-            "        X X         ",
+            "         Y          ",
+            "        U U         ",
             "       X   X        ",
-            "        X X         ",
-            "         X          ",
+            "        U U         ",
+            "         Y          ",
             "                    ",
             "                    ",
             " 0                 0",
@@ -39,12 +39,16 @@ int main() {
 
             case 1 :
                 while (Ret < 1) {
-                    printf("Les regles sont les suivantes :\n"
+                    printf("Les regles sont les suivantes :\n\n"
+                           "Les controles sont els suivants :\n"
                            "Pour avancer, appuyez sur z.\n"
                            "Pour reculer, appuyez sur s.\n"
                            "Pour aller vers la gauche, appuyez sur s.\n"
                            "Pour aller vers la droite, appuyez sur d.\n"
                            "Appuyer sur P pour mettre pause.\n\n"
+                           "Regles du jeu :\n"
+                           "Il faut recuperer les 4 oiseaux pour finir le niveau. Gare aux ennemis comme la boule ou le snoopy mechant!\n"
+                           "Il y a plusieurs types de blocs avec lesquels interagir. Mais a toi de les decouvrir...\n"
                            "Appuyer sur 1 pour retourner au menu .\n\n");
                     scanf("%d", &Ret);
                     if (Ret != 1) {
@@ -80,7 +84,7 @@ int main() {
                 touche = 0;
                 system("cls");
                 InitialiserVie(&Vie);
-               while (Vie!=0){
+                while (Vie!=0){
                     while (S!= 4) {
                         if (TempsREST != 0) {
                             AfficherNiv(x, y, balleX, balleY, tabNiv1);
@@ -106,6 +110,13 @@ int main() {
                                         TryMove(&x, &y, 1, 0, tabNiv1, 4, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
                                         system("cls");
+                                        break;
+                                    case 'p':
+                                        gotoligcol(50,50);
+                                        printf("\t\tVOUS AVEZ MIS EN PAUSE.\n"
+                                           "\tAppuyer a nouveau sur P pour remettre le jeu en route.\n");
+                                        touche=MyGetch();
+                                        break;
                                     default:
                                         break;
                                 }
@@ -123,6 +134,7 @@ int main() {
 //si la balle touche snoopy alors il perd une vie et la partie recommence//
                             if (balleX==x&&balleY==y){
                                 Vie=Vie-1;
+                                system("cls");
                                 printf("---GAME OVER---\n"
                                        "Il vous reste %d vies.\n"
                                        "Entrer 2 pour recommencer\n",Vie);
@@ -138,7 +150,7 @@ int main() {
                             printf("---GAME OVER---\n"
                                    "Il vous reste %d vies.\n"
                                    "Appuyer sur 1 pour recommencer\n",Vie);
-                            do{ 
+                            do{
                                 ShowConsoleCursor(TRUE);
                                 scanf("%d", &z);
                             }while (z!=1);
@@ -187,4 +199,4 @@ int main() {
     } while ((A<2)||(A>6)||(A==1));
 
     return 0;
-}
+
