@@ -32,3 +32,12 @@ void gotoligcol( int lig, int col )
     mycoord.Y = lig;
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
 }
+void ShowConsoleCursor(int showFlag){
+    //Permet de retirer le curseur (trouvé à partir de recherches internet qui ont demandés de la réflexion)//
+HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+CONSOLE_CURSOR_INFO cursorInfo;
+
+GetConsoleCursorInfo(consoleHandle, &cursorInfo);
+cursorInfo.bVisible = showFlag;
+SetConsoleCursorInfo(consoleHandle, &cursorInfo);
+}
