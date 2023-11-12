@@ -4,15 +4,6 @@
 #include <windows.h>
 #include <unistd.h>
 
-void gotoligcol( int lig, int col )
-{
-// ressources
-    COORD mycoord;
-    mycoord.X = col;
-    mycoord.Y = lig;
-    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
-}
-
 void DeplacementBalle(int* balleX,int* balleY,int*vx, int*vy){
         *balleX = *balleX + *vx;
         *balleY = *balleY + *vy;
@@ -23,4 +14,13 @@ void DeplacementBalle(int* balleX,int* balleY,int*vx, int*vy){
         if (*balleX <= 0 || *balleX >= 9) {//(largeur matrice-1)
             *vx = -1 * *vx; // Inverse la direction horizontale
         }
+}
+
+void gotoligcol( int lig, int col )
+{
+// ressources
+    COORD mycoord;
+    mycoord.X = col;
+    mycoord.Y = lig;
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
 }
