@@ -74,6 +74,8 @@ int main() {
                 y = 9;
                 vx = 1;
                 vy = 1;
+                int w;
+                int z;
 
                 touche = 0;
                 system("cls");
@@ -125,6 +127,7 @@ int main() {
                                        "Il vous reste %d vies.\n"
                                        "Entrer 2 pour recommencer\n",Vie);
                                 do{
+                                    ShowConsoleCursor(TRUE);
                                     scanf("%d", &w);
                                 }while (w!=2);
                                 S=0;
@@ -134,14 +137,16 @@ int main() {
                             Vie=Vie-1;
                             printf("---GAME OVER---\n"
                                    "Il vous reste %d vies.\n"
-                                   "Appuyer sur z pour recommencer\n",Vie);
-                            do{
-                                scanf("%c", &touche);
-                            }while (touche!="z");
+                                   "Appuyer sur 1 pour recommencer\n",Vie);
+                            do{ 
+                                ShowConsoleCursor(TRUE);
+                                scanf("%d", &z);
+                            }while (z!=1);
                             S=0;
                         }
                     }
                     if (S == 4) {
+                        ShowConsoleCursor(TRUE);
                         Score1=CalculScoreNiv(S,TempsREST);
                         JeuGAGNE(Vie,Score1);
                         scanf("%c", &touche);
