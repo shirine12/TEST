@@ -7,13 +7,13 @@
 int main() {
     //Mise en place des niveaux
     unsigned char tabNiv1[Nc][Nl] = {
-            " 0                 0",
+            " 0W                0",
             "                    ",
-            "         Y          ",
-            "        U U         ",
+            "W        X          ",
+            "        X X         ",
             "       X   X        ",
-            "        U U         ",
-            "         Y          ",
+            "        X X         ",
+            "         X          ",
             "                    ",
             "                    ",
             " 0                 0",
@@ -39,16 +39,12 @@ int main() {
 
             case 1 :
                 while (Ret < 1) {
-                    printf("Les regles sont les suivantes :\n\n"
-                           "Les controles sont els suivants :\n"
+                    printf("Les regles sont les suivantes :\n"
                            "Pour avancer, appuyez sur z.\n"
                            "Pour reculer, appuyez sur s.\n"
                            "Pour aller vers la gauche, appuyez sur s.\n"
                            "Pour aller vers la droite, appuyez sur d.\n"
                            "Appuyer sur P pour mettre pause.\n\n"
-                           "Regles du jeu :\n"
-                           "Il faut recuperer les 4 oiseaux pour finir le niveau. Gare aux ennemis comme la boule ou le snoopy mechant!\n"
-                           "Il y a plusieurs types de blocs avec lesquels interagir. Mais a toi de les decouvrir...\n"
                            "Appuyer sur 1 pour retourner au menu .\n\n");
                     scanf("%d", &Ret);
                     if (Ret != 1) {
@@ -78,8 +74,6 @@ int main() {
                 y = 9;
                 vx = 1;
                 vy = 1;
-                int w;
-                int z;
 
                 touche = 0;
                 system("cls");
@@ -94,29 +88,38 @@ int main() {
                                     case 'q':
                                         TryMove(&x, &y, 0, -1, tabNiv1, 1, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        if((x==8&&y==5)||(x==8&&y==15)){
+                                            y=y+1;
+                                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        }
                                         system("cls");
                                         break;
                                     case 'd':
                                         TryMove(&x, &y, 0, 1, tabNiv1, 3, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        if(x==8&&y==5){
+                                            y=y-1;
+                                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        }
                                         system("cls");
                                         break;
                                     case 'z':
                                         TryMove(&x, &y, -1, 0, tabNiv1, 2, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        if((x==8&&y==5)||(x==8&&y==15)){
+                                            x=x+1;
+                                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        }
                                         system("cls");
                                         break;
                                     case 's':
                                         TryMove(&x, &y, 1, 0, tabNiv1, 4, &S);
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        if((x==8&&y==5)||(x==8&&y==15)){
+                                            x=x-1;
+                                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                        }
                                         system("cls");
-                                        break;
-                                    case 'p':
-                                        gotoligcol(50,50);
-                                        printf("\t\tVOUS AVEZ MIS EN PAUSE.\n"
-                                           "\tAppuyer a nouveau sur P pour remettre le jeu en route.\n");
-                                        touche=MyGetch();
-                                        break;
                                     default:
                                         break;
                                 }
@@ -133,8 +136,12 @@ int main() {
 
 //si la balle touche snoopy alors il perd une vie et la partie recommence//
                             if (balleX==x&&balleY==y){
+                                int w;
+                                int z;
                                 Vie=Vie-1;
-                                system("cls");
+                                x = 4;
+                                y = 9;
+                                AfficherNiv(x, y, balleX, balleY, tabNiv1);
                                 printf("---GAME OVER---\n"
                                        "Il vous reste %d vies.\n"
                                        "Entrer 2 pour recommencer\n",Vie);
@@ -144,18 +151,43 @@ int main() {
                                 }while (w!=2);
                                 S=0;
                             }
+                            if((x==2&&y==1)||(x==0&&y==2)){
+                                int p;
+                                Vie=Vie-1;
+                                x = 4;
+                                y = 9;
+                                AfficherNiv(x, y, balleX, balleY, tabNiv1);
+                                printf("---GAME OVER---\n"
+                                       "Il vous reste %d vies.\n"
+                                       "Entrer 2 pour recommencer\n",Vie);
+                                do{
+                                    ShowConsoleCursor(TRUE);
+                                    scanf("%d", &p);
+                                }while (p!=2);
+                                S=0;
+
+                            }
+
+
+
                         }
                         else {
+                            int w;
+                            int z;
                             Vie=Vie-1;
+                            x = 4;
+                            y = 9;
+                            AfficherNiv(x, y, balleX, balleY, tabNiv1);
                             printf("---GAME OVER---\n"
                                    "Il vous reste %d vies.\n"
-                                   "Appuyer sur 1 pour recommencer\n",Vie);
+                                   "Entrer 1 pour recommencer\n",Vie);
                             do{
                                 ShowConsoleCursor(TRUE);
                                 scanf("%d", &z);
-                            }while (z!=1);
+                            }while (w!=1);
                             S=0;
                         }
+
                     }
                     if (S == 4) {
                         ShowConsoleCursor(TRUE);
@@ -165,7 +197,6 @@ int main() {
                     }
                     break;
                 }
-
 
 
 
@@ -186,8 +217,8 @@ int main() {
 
 
             case 6 :
-                printf("Tres bien, au revoir!\n");
-                sleep(4);
+                    printf("Tres bien, au revoir!\n");
+                    sleep(4);
                 break;
 
 
@@ -199,4 +230,5 @@ int main() {
     } while ((A<2)||(A>6)||(A==1));
 
     return 0;
+}
 
