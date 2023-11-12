@@ -1,7 +1,3 @@
-//
-// Created by alban on 28/10/2023.
-//
-
 #ifdef _WIN32
 #include "LIBRAIRIE SS PROG.h"
 #include <windows.h>
@@ -90,16 +86,21 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl])
             if (i==balleX && j==balleY){
                 printf(MAGENTA_COLOR "%c", 0x9D );
             }
-            if (tab[i][j]=="X"){
-                tab[i][j]=NULL;
-                printf("%c",0x6A);
-                tab[i][j]="X";
+            if (tab[i][j]=='X'){
+                printf("%c",0xB2);
+            }
+            if (tab[i][j]=='W'){
+                printf("%c", 0xDC);
+            }
+            if(i==8&&j==6){
+                printf("%c", 0xCE);
             }
             else
                 printf(RESET_COLOR"%c",tab[i][j]);
         }
         printf("\n");
     }
+    ShowConsoleCursor(FALSE);
 }
 
 void JeuGAGNE(int v, int S){
@@ -109,7 +110,7 @@ void JeuGAGNE(int v, int S){
            "\n"
            "Vous avez obtenu un score de %d: \n"
            "Vous avez encore %d vies.\n"
-           "Appuyez sur Z pour continuer vers le niveau 2.\n",S,v);
+           "Appuyez sur z pour continuer vers le niveau 2.\n",S,v);
     while (touche!="z"){
         touche=MyGetch;
     }
@@ -131,12 +132,11 @@ void TryMove(int* x,int* y,int vx,int vy, unsigned char tab[Nc][Nl], int C,int* 
         tab[*x + vx+ vx][*y + vy + vy] = 'X';
         tab[*x + vx][*y + vy] = ' ';
     }
-    if (tab[*x + vx][*y + vy] == 'Y') {
-        return;
-    }
+
     if (*x+vx==-1 || *x+vx==10 ||*y+vy==0 || *y+vy==20){
         return;
     }
+
 
     if (tab[*x + vx][*y + vy]=='0'){
         *S=*S+1;
