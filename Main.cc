@@ -184,7 +184,7 @@ int main() {
                             do{
                                 ShowConsoleCursor(TRUE);
                                 scanf("%d", &z);
-                            }while (w!=1);
+                            }while (z!=1);
                             S=0;
                         }
 
