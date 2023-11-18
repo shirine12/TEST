@@ -1,7 +1,3 @@
-//
-// Created by alban on 28/10/2023.
-//
-
 #include <stdio.h>
 #include "LIBRAIRIE SS PROG.h"
 #include <unistd.h>
@@ -17,4 +13,3 @@ int compteur(int* x){
         printf("        Il reste %d secondes pour completer le niveau.        ",*i);
     }
 }
-
