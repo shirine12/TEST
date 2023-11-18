@@ -69,7 +69,7 @@ void InitialiserVie(int* a) {
     *a = 3;
 }
 
-void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl])
+void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl], int block)
 {
     int i,j;
     gotoligcol(0,0);
@@ -80,20 +80,30 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl])
             tab[x][y]=NULL;
             tab[balleX][balleY]=NULL;
             if (i==x && j==y){
+                /*printf("%c", 0xF4);*/
                 printf("%c", 0xF4);
             }
+            /*if((i==0&&j==1)||(i==9&&j==20)||(i==0&&j==20)||(i==9&&j==1)){
+                printf("%c", 0xA9);
+            }*/
 
             if (i==balleX && j==balleY){
                 printf(MAGENTA_COLOR "%c", 0x9D );
             }
-            if (tab[i][j]=='X'){
-                printf("%c",0xB2);
-            }
-            if (tab[i][j]=='W'){
-                printf("%c", 0xDC);
-            }
-            if(i==8&&j==6){
+            if((i==8&&j==5)||(i==9&&j==5)||(i==1&&j==16)){
                 printf("%c", 0xCE);
+            }
+            if((i==2&&j==1)||(i==1&&j==5)||(i==3&&j==17)){
+                printf("%c", 0xB2);
+            }
+            if(i==6&&j==18){
+
+                if(block==1) {
+                    printf(" ");
+                }
+                else{
+                    printf("%c", 0xFE);
+                }
             }
             else
                 printf(RESET_COLOR"%c",tab[i][j]);
@@ -124,9 +134,9 @@ char MyGetch()
 // trouver alternative hors Windows.
 }
 
-void TryMove(int* x,int* y,int vx,int vy, unsigned char tab[Nc][Nl], int C,int* S) {
+ void TryMove(int* x,int* y,int vx,int vy, unsigned char tab[Nc][Nl], int C,int* S) {
     if (tab[*x + vx][*y + vy] == 'X') {
-        if (tab[*x + vx][*y + vy] == tab[*x + vx + vx][*y + vy + vy]) {
+        if (tab[*x + vx][*y + vy] == tab[*x + vx +vx][*y + vy + vy ]) {
             return;
         }
         tab[*x + vx+ vx][*y + vy + vy] = 'X';
@@ -148,6 +158,4 @@ void TryMove(int* x,int* y,int vx,int vy, unsigned char tab[Nc][Nl], int C,int* 
     tab[*x][*y]=' ';
     (*x) += vx;
     (*y) += vy;
-
-
 }
