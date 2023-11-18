@@ -1,6 +1,3 @@
-//
-// Created by alban on 28/10/2023.
-//
 
 #ifdef _WIN32
 #include "LIBRAIRIE SS PROG.h"
