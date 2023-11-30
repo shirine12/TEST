@@ -74,7 +74,7 @@ void InitialiserVie(int* a) {
 void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl], int block, int NIV) {
     if (NIV == 1) {
         int i, j;
-        gotoligcol(1, 0);
+        gotoligcol(1, 1);
         for (i = 0; i < Nc; i++) {
             for (j = 0; j < Nl; j++) {
                 tab[x][y] = NULL;
