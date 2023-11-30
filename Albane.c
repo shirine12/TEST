@@ -1,3 +1,4 @@
+
 #ifdef _WIN32
 #include "LIBRAIRIE SS PROG.h"
 #include <windows.h>
@@ -8,6 +9,7 @@
 #endif
 #include <stdio.h>
 #define MAGENTA_COLOR "\x1b[35m"
+#define CYAN_COLOR "\x1b[36m"
 #define RESET_COLOR "\x1b[0m"
 
 void menu(){
@@ -69,50 +71,111 @@ void InitialiserVie(int* a) {
     *a = 3;
 }
 
-void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl], int block)
-{
-    int i,j;
-    gotoligcol(0,0);
-    for(i=0;i<Nc;i++)
-    {
-        for(j=0;j<Nl;j++)
-        {
-            tab[x][y]=NULL;
-            tab[balleX][balleY]=NULL;
-            if (i==x && j==y){
-                /*printf("%c", 0xF4);*/
-                printf("%c", 0xF4);
-            }
-            /*if((i==0&&j==1)||(i==9&&j==20)||(i==0&&j==20)||(i==9&&j==1)){
-                printf("%c", 0xA9);
-            }*/
-
-            if (i==balleX && j==balleY){
-                printf(MAGENTA_COLOR "%c", 0x9D );
-            }
-            if((i==8&&j==5)||(i==9&&j==5)||(i==1&&j==16)){
-                printf("%c", 0xCE);
-            }
-            if((i==2&&j==1)||(i==1&&j==5)||(i==3&&j==17)){
-                printf("%c", 0xB2);
-            }
-            if(i==6&&j==18){
-
-                if(block==1) {
-                    printf(" ");
+void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl], int block, int NIV) {
+    if (NIV == 1) {
+        int i, j;
+        gotoligcol(1, 0);
+        for (i = 0; i < Nc; i++) {
+            for (j = 0; j < Nl; j++) {
+                tab[x][y] = NULL;
+                tab[balleX][balleY] = NULL;
+                if (i == x && j == y) {
+                    /*printf("%c", 0xF4);*/
+                    printf("%c", 0xF4);
                 }
-                else{
-                    printf("%c", 0xFE);
+                /*if((i==0&&j==1)||(i==9&&j==20)||(i==0&&j==20)||(i==9&&j==1)){
+                    printf("%c", 0xA9);
+                }*/
+
+                if (i == balleX && j == balleY) {
+                    printf(MAGENTA_COLOR "%c", 0x9D);
                 }
+                if ((i == 8 && j == 5) || (i == 9 && j == 5) || (i == 1 && j == 16)) {
+                    printf("%c", 0xCE);
+                }
+                if ((i == 2 && j == 1) || (i == 1 && j == 5) || (i == 3 && j == 17)) {
+                    printf("%c", 0xB2);
+                }
+                if (i == 6 && j == 18) {
+
+                    if (block == 1) {
+                        printf(" ");
+                    } else {
+                        printf("%c", 0xFE);
+                    }
+                } else
+                    printf(RESET_COLOR"%c", tab[i][j]);
             }
-            else
-                printf(RESET_COLOR"%c",tab[i][j]);
+            printf("\n");
         }
-        printf("\n");
-    }
-    ShowConsoleCursor(FALSE);
-}
+        ShowConsoleCursor(FALSE);
+        gotoligcol(11,0);
+        printf(CYAN_COLOR "%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c", 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF);
+        gotoligcol(0,0);
+        printf(CYAN_COLOR"%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c", 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF, 0xDF);
+        gotoligcol(0,21);
+        printf("%c", 0xDB);
+        gotoligcol(1,21);
+        printf("%c", 0xDB);
+        gotoligcol(2,21);
+        printf("%c", 0xDB);
+        gotoligcol(3,21);
+        printf("%c", 0xDB);
+        gotoligcol(4,21);
+        printf("%c", 0xDB);
+        gotoligcol(5,21);
+        printf("%c", 0xDB);
+        gotoligcol(6,21);
+        printf("%c", 0xDB);
+        gotoligcol(7,21);
+        printf("%c", 0xDB);
+        gotoligcol(8,21);
+        printf("%c", 0xDB);
+        gotoligcol(9,21);
+        printf("%c", 0xDB);
+        gotoligcol(10,21);
+        printf("%c", 0xDB);
+        //premier plan
+        gotoligcol(0,0);
+        printf("%c", 0xDB);
+        gotoligcol(1,0);
+        printf("%c", 0xDB);
+        gotoligcol(2,0);
+        printf("%c", 0xDB);
+        gotoligcol(3,0);
+        printf("%c", 0xDB);
+        gotoligcol(4,0);
+        printf("%c", 0xDB);
+        gotoligcol(5,0);
+        printf("%c", 0xDB);
+        gotoligcol(6,0);
+        printf("%c", 0xDB);
+        gotoligcol(7,0);
+        printf("%c", 0xDB);
+        gotoligcol(8,0);
+        printf("%c", 0xDB);
+        gotoligcol(9,0);
+        printf("%c", 0xDB);
+        gotoligcol(10,0);
+        printf("%c", 0xDB);
+        printf(RESET_COLOR"");
 
+
+
+
+
+
+    }
+    if(NIV==2){
+
+    }
+    if(NIV==3){
+
+    }
+    if(NIV==4){
+
+    }
+}
 void JeuGAGNE(int v, int S){
     char touche;
     system("cls");
