@@ -29,9 +29,12 @@ int main() {
         int Ret = 0;
         int x, y;
         int Vie;
+        int NIV=1;
+
 
         //Début du jeu
         do {
+
             menu();
             scanf("%d", &A);
             //if (kbhit()) {
@@ -73,6 +76,7 @@ int main() {
                     int balleY = 7;
                     int vx;
                     int vy;
+                    int valid;
 
                     //Initialisation de Snoopy et la direction de la balle
                     int x, y;
@@ -82,215 +86,287 @@ int main() {
                     y = 9;
                     vx = 1;
                     vy = 1;
+                        if(valid==1) {
+                            FILE *Save = fopen("saveNiv", "r");
+                            int x1 = x;
+                            int y1 = y;
+                            int Score11 = Score1;
+                            int block1 = block;
+                            int balleX1 = balleX;
+                            int balleY1 = balleY;
+                            if (Save == NULL) {
+                                perror("Erreur lors de l'ouverture du fichier de sauvegarde");
+                                return 1;
+                            }
+                            fscanf(Save, "%d %d %d %d %d %d", &x1, &y1, &Score11, &block1, &balleX1, &balleY1);
 
-                    touche = 0;
-                    system("cls");
-                    InitialiserVie(&Vie);
-                    while (Vie != 0) {
-                        while (S != 4) {
-                            if (TempsREST != 0) {
-                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                if (_kbhit()) {
-                                    touche = _getch();
-                                    if ((x == 6 && y == 17) || (x == 6 && y == 19)) {
-                                        if (touche == 'k') {
-                                            block = 1;
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
+                            fclose(Save);
+                            x1 = x;
+                            y1 = y;
+                            Score11 = Score1;
+                            block1 = block;
+                            balleX1 = balleX;
+                            balleY1 = balleY;
+                        }
+
+                        touche = 0;
+                        system("cls");
+                        InitialiserVie(&Vie);
+                        while (Vie != 0) {
+                            while (S != 4) {
+                                if (TempsREST != 0) {
+                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                    if (_kbhit()) {
+                                        touche = _getch();
+                                        if (NIV == 1) {
+                                            if ((x == 6 && y == 17) || (x == 6 && y == 19)) {
+                                                if (touche == 'k') {
+                                                    block = 1;
+                                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                }
+                                            }
+
+                                            if ((x == 5 && y == 18) || (x == 7 && y == 18)) {
+                                                if (touche == 'k') {
+                                                    block = 1;
+                                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                }
+                                            }
                                         }
-                                    }
-                                    if ((x == 5 && y == 18) || (x == 7 && y == 18)) {
-                                        if (touche == 'k') {
-                                            block = 1;
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
+                                        switch (touche) {
+                                            case 'q':
+                                                TryMove(&x, &y, 0, -1, tabNiv1, 1, &S);
+                                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                if (NIV == 1) {
+                                                    if ((x == 8 && y == 5) || (x == 9 && y == 5) ||
+                                                        (x == 1 && y == 16)) { //bloc qui bouge pas
+                                                        y = y + 1;
+                                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                    }
+                                                    if (x == 6 && y == 18) { //bloc cassable
+                                                        if (block != 1) {
+                                                            y = y + 1;
+                                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                        }
+                                                    }
+                                                }
+                                                if (NIV == 2) {
+
+                                                }
+                                                system("cls");
+                                                break;
+                                            case 'd':
+                                                TryMove(&x, &y, 0, 1, tabNiv1, 3, &S);
+                                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                if (NIV == 1) {
+                                                    if ((x == 8 && y == 5) || (x == 9 && y == 5) ||
+                                                        (x == 1 && y == 16)) {
+                                                        y = y - 1;
+                                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                    }
+                                                    if (x == 6 && y == 18) {
+                                                        if (block != 1) {
+                                                            y = y - 1;
+                                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                        }
+                                                    }
+                                                }
+                                                system("cls");
+                                                break;
+                                            case 'z':
+                                                TryMove(&x, &y, -1, 0, tabNiv1, 2, &S);
+                                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                if (NIV == 1) {
+                                                    if ((x == 8 && y == 5) || (x == 9 && y == 5) ||
+                                                        (x == 1 && y == 16)) {
+                                                        x = x + 1;
+                                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                    }
+                                                    if (x == 6 && y == 18) {
+                                                        if (block != 1) {
+                                                            x = x + 1;
+                                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                        }
+                                                    }
+                                                }
+                                                system("cls");
+                                                break;
+                                            case 's':
+                                                TryMove(&x, &y, 1, 0, tabNiv1, 4, &S);
+                                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                if (NIV == 1) {
+                                                    if ((x == 8 && y == 5) || (x == 9 && y == 5) ||
+                                                        (x == 1 && y == 16)) {
+                                                        x = x - 1;
+                                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                    }
+                                                    if (x == 6 && y == 18) {
+                                                        if (block != 1) {
+                                                            x = x - 1;
+                                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                                        }
+                                                    }
+                                                }
+                                                system("cls");
+                                                break;
+
+                                            case 'p':
+                                                system("cls");
+                                                gotoligcol(50, 50);
+                                                printf("\t\t\tVOUS AVEZ MIS EN PAUSE.\n"
+                                                       "\t Appuyer a nouveau sur p pour remettre le jeu en route. \n");
+                                                printf("\t\tSi vous voulez sauvegarder votre avancee appuyez sur la touche u\n");
+                                                touche = getch();
+                                                /*system("cls");*/
+
+                                                break;
+
+                                            case 'm': {
+                                                FILE *Save = fopen("saveNiv", "w");
+                                                if (Save == NULL) {
+                                                    perror("Erreur lors de l'ouverture du fichier de sauvegarde");
+                                                    return 1;
+                                                }
+                                                int x1 = x;
+                                                int y1 = y;
+                                                int Score11 = Score1;
+                                                int block1 = block;
+                                                int balleX1 = balleX;
+                                                int balleY1 = balleY;
+                                                fprintf(Save, "%d %d %d %d %d %d", &x1, &y1, Score11, block1, balleX1,
+                                                        balleY1);
+
+                                                fclose(Save);
+
+                                            }
+
+
+                                                break;
+
                                         }
-                                    }
-                                    switch (touche) {
-                                        case 'q':
-                                            TryMove(&x, &y, 0, -1, tabNiv1, 1, &S);
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                            if ((x == 8 && y == 5) || (x == 9 && y == 5) || (x == 1 && y == 16)) {
-                                                y = y + 1;
-                                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                            }
-                                            if (x == 6 && y == 18) {
-                                                if (block != 1) {
-                                                    y = y + 1;
-                                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                                }
-                                            }
-                                            system("cls");
-                                            break;
-                                        case 'd':
-                                            TryMove(&x, &y, 0, 1, tabNiv1, 3, &S);
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                            if ((x == 8 && y == 5) || (x == 9 && y == 5) || (x == 1 && y == 16)) {
-                                                y = y - 1;
-                                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                            }
-                                            if (x == 6 && y == 18) {
-                                                if (block != 1) {
-                                                    y = y - 1;
-                                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                                }
-                                            }
-                                            system("cls");
-                                            break;
-                                        case 'z':
-                                            TryMove(&x, &y, -1, 0, tabNiv1, 2, &S);
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                            if ((x == 8 && y == 5) || (x == 9 && y == 5) || (x == 1 && y == 16)) {
-                                                x = x + 1;
-                                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                            }
-                                            if (x == 6 && y == 18) {
-                                                if (block != 1) {
-                                                    x = x + 1;
-                                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                                }
-                                            }
-                                            system("cls");
-                                            break;
-                                        case 's':
-                                            TryMove(&x, &y, 1, 0, tabNiv1, 4, &S);
-                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                            if ((x == 8 && y == 5) || (x == 9 && y == 5) || (x == 1 && y == 16)) {
-                                                x = x - 1;
-                                                AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                            }
-                                            if (x == 6 && y == 18) {
-                                                if (block != 1) {
-                                                    x = x - 1;
-                                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                                }
-                                            }
-                                            system("cls");
-                                            break;
+                                    } else {
+                                        TempsREST = TempsREST - 1;
+                                        sleep(1);
+                                        gotoligcol(15, 15);
+                                        printf("           Il reste %d secondes pour completer le niveau.        \n"
+                                               "                SCORE = %d                   VIES=%d\n", TempsREST, S,
+                                               Vie);
+                                        DeplacementBalle(&balleX, &balleY, &vx, &vy, tabNiv1);
 
-                                        case 'p':
-                                            gotoligcol(50, 50);
-                                            printf("\t\tVOUS AVEZ MIS EN PAUSE.\n"
-                                                   "\t Appuyer a nouveau sur p pour remettre le jeu en route. \n");
-                                            touche = getch();
-                                            system("cls");
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                } else {
-                                    usleep(10000);
-                                    TempsREST = TempsREST - 1;
-                                    gotoligcol(15, 15);
-                                    printf("           Il reste %d secondes pour completer le niveau.        \n"
-                                           "                SCORE = %d                   VIES=%d\n", TempsREST, S, Vie);
-                                    DeplacementBalle(&balleX, &balleY, &vx, &vy, tabNiv1);
 
-                                }
+                                    }
 
 
 
 //si la balle touche snoopy alors il perd une vie et la partie recommence//
-                                if (balleX == x && balleY == y) {
+                                    if (balleX == x && balleY == y) {
+                                        int w;
+                                        int z;
+                                        Vie = Vie - 1;
+                                        x = 4;
+                                        y = 9;
+                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                        printf("---GAME OVER---\n"
+                                               "Il vous reste %d vies.\n"
+                                               "Entrer 2 pour recommencer\n", Vie);
+                                        do {
+                                            ShowConsoleCursor(TRUE);
+                                            scanf("%d", &w);
+                                        } while (w != 2);
+                                        S = 0;
+                                    }
+                                    if (NIV == 1) {
+                                        if ((x == 2 && y == 1) || (x == 1 && y == 5) || (x == 3 && y == 17)) {
+                                            int p;
+                                            Vie = Vie - 1;
+                                            x = 4;
+                                            y = 9;
+                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
+                                            printf("---GAME OVER---\n"
+                                                   "Il vous reste %d vies.\n"
+                                                   "Entrer 2 pour recommencer\n", Vie);
+                                            do {
+                                                ShowConsoleCursor(TRUE);
+                                                scanf("%d", &p);
+                                            } while (p != 2);
+                                            S = 0;
+
+                                        }
+                                    }
+
+
+                                }
+                                if (Vie == 0) {
                                     int w;
                                     int z;
-                                    Vie = Vie - 1;
+                                    //Vie=Vie-1;
                                     x = 4;
                                     y = 9;
-                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
+                                    //AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
                                     printf("---GAME OVER---\n"
                                            "Il vous reste %d vies.\n"
-                                           "Entrer 2 pour recommencer\n", Vie);
+                                           "Entrer 1 pour retourner au menu\n", Vie);
                                     do {
                                         ShowConsoleCursor(TRUE);
-                                        scanf("%d", &w);
-                                    } while (w != 2);
+                                        scanf("%d", &z);
+                                    } while (z != 1);
+
                                     S = 0;
-                                }
-                                if ((x == 2 && y == 1) || (x == 1 && y == 5) || (x == 3 && y == 17)) {
-                                    int p;
-                                    Vie = Vie - 1;
-                                    x = 4;
-                                    y = 9;
-                                    AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                    printf("---GAME OVER---\n"
-                                           "Il vous reste %d vies.\n"
-                                           "Entrer 2 pour recommencer\n", Vie);
-                                    do {
-                                        ShowConsoleCursor(TRUE);
-                                        scanf("%d", &p);
-                                    } while (p != 2);
-                                    S = 0;
+                                    if (z == 1) {
+                                        system("cls");
+                                        printf("\n\n\n\n\n\n\n\n\n");
+                                        menu();
+
+                                    }
 
                                 }
 
 
                             }
-                            if (Vie == 0) {
-                                int w;
-                                int z;
-                                //Vie=Vie-1;
-                                x = 4;
-                                y = 9;
-                                //AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
-                                printf("---GAME OVER---\n"
-                                       "Il vous reste %d vies.\n"
-                                       "Entrer 1 pour retourner au menu\n", Vie);
-                                do {
-                                    ShowConsoleCursor(TRUE);
-                                    scanf("%d", &z);
-                                } while (z != 1);
 
-                                S = 0;
-                                if (z == 1) {
-                                    system("cls");
-                                    printf("\n\n\n\n\n\n\n\n\n");
-                                    menu();
 
-                                }
-
+                            if (S == 4) {
+                                ShowConsoleCursor(TRUE);
+                                Score1 = CalculScoreNiv(S, TempsREST);
+                                JeuGAGNE(Vie, Score1);
+                                scanf("%c", &touche);
+                                NIV = NIV + 1;
                             }
-
-
+                            break;
                         }
 
-
-                        if (S == 4) {
-                            ShowConsoleCursor(TRUE);
-                            Score1 = CalculScoreNiv(S, TempsREST);
-                            JeuGAGNE(Vie, Score1);
-                            scanf("%c", &touche);
-                        }
+                        case 3 :
+                            printf("Entrez le mot de passe de votre partie pour y acceder :\n");
+                            valid=1;
                         break;
+
+
+                        case 4 :
+                            printf("Les mots de passe sont les suivants :\n");
+                        break;
+
+
+                        case 5 :
+                            printf("Les scores sont les suivants : \n");
+                        break;
+
+
+                        case 6 :
+                            printf("Tres bien, au revoir!\n");
+                        sleep(4);
+                        break;
+
+
+
+                        default :
+                            printf("Veuillez selectionner une valeur correcte.\n");
+
                     }
 
-
-                case 3 :
-                    printf("Entrez le mot de passe de votre partie pour y acceder :\n");
-                    break;
-
-
-                case 4 :
-                    printf("Les mots de passe sont les suivants :\n");
-                    break;
-
-
-                case 5 :
-                    printf("Les scores sont les suivants : \n");
-                    break;
-
-
-                case 6 :
-                    printf("Tres bien, au revoir!\n");
-                    sleep(4);
-                    break;
-
-
-                default :
-                    printf("Veuillez selectionner une valeur correcte.\n");
-
             }
+            while ((A < 2) || (A > 6) || (A == 1) || (G == 0));
 
-        } while ((A < 2) || (A > 6) || (A == 1) || (G == 0));
+            return 0;
 
-        return 0;
 
 }
