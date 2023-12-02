@@ -114,7 +114,15 @@ int main() {
                         InitialiserVie(&Vie);
                         while (Vie != 0) {
                             while (S != 4) {
-                                if (TempsREST != 0) {
+                                if (T!= 0) {
+                                        if (Z != 0) {
+                                clock_t startTime = Z;
+                                T = 120 - (clock() / CLOCKS_PER_SEC);
+                            } else {
+                                clock_t startTime = clock();
+                                Z = clock();
+                                T = 120 - (clock() / CLOCKS_PER_SEC);
+                            };
                                     AfficherNiv(x, y, balleX, balleY, tabNiv1, block, NIV);
                                     if (_kbhit()) {
                                         touche = _getch();
@@ -218,6 +226,7 @@ int main() {
                                                 printf("\t\tSi vous voulez sauvegarder votre avancee appuyez sur la touche u\n");
                                                 touche = getch();
                                                 /*system("cls");*/
+                                                    clock_t startTime = Z;
 
                                                 break;
 
@@ -249,7 +258,7 @@ int main() {
                                         sleep(1);
                                         gotoligcol(15, 15);
                                         printf("           Il reste %d secondes pour completer le niveau.        \n"
-                                               "                SCORE = %d                   VIES=%d\n", TempsREST, S,
+                                               "                SCORE = %d                   VIES=%d\n", T, S,
                                                Vie);
                                         DeplacementBalle(&balleX, &balleY, &vx, &vy, tabNiv1);
 
