@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <unistd.h>
+#include <time.h>
 
 int main() {
         //Mise en place des niveaux
