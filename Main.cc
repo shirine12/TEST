@@ -107,8 +107,8 @@ int main() {
                            "Enregistrer cette partie dans un des slots disponible.\n"
                            "Appuyer sur Z pour confirmer (il vous faudra sauvegarder dans le menu pause, sinon vous perdrez vos progres).\n");
 
-                    int T;
-                    int Z;
+                    int T=120;
+                    int Z=0;
                     int S = 0;
                     char touche;
                     int balleX = 5;
@@ -143,7 +143,7 @@ int main() {
                     }
 
 
-                    FILE *Save = fopen("saveNiv", "r");
+                    FILE *Save = fopen("saveNiv", "w");
                     int x1 = x;
                     int y1 = y;
                     int Score11 = Score1;
@@ -172,14 +172,14 @@ int main() {
                     while (Vie != 0) {
                         while (S != 4) {
                             if (T != 0) {
-                                /* if (Z != 0) {
+                                 if (Z != 0) {
                                      clock_t startTime = Z;
                                      T = 120 - (clock() / CLOCKS_PER_SEC);
                                  } else {
                                      clock_t startTime = clock();
                                      Z = clock();
                                      T = 120 - (clock() / CLOCKS_PER_SEC);
-                                 }*/
+                                 }
                                 AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2, block3, NIV);
                                 if (_kbhit()) {
                                     touche = _getch();
@@ -296,6 +296,17 @@ int main() {
                                                                         block3, NIV);
                                                         }
                                                     }
+                                                    if ((x == 9 && y == 2) || (x == 8 && y == 2) ||
+                                                        (x == 7 && y == 2)||(x == 7 && y == 3) || (x == 7 && y == 4) ||
+                                                        (x == 7 && y == 5)||(x == 8 && y == 7) || (x == 8 && y == 8) ||(x == 8 && y == 11) ||
+                                                        (x == 8 && y == 12)|| (x == 8 && y == 13) || (x == 8 && y == 14) ||
+                                                        (x == 8 && y == 15)||(x == 9 && y == 17) || (x == 7 && y == 15) || (x == 6 && y == 15) ||
+                                                        (x == 6 && y == 16)||(x == 6 && y == 17) || (x == 6 && y == 18) ||
+                                                        (x == 6 && y == 19)||(x==6&&y==20)) { //bloc qui bouge pas
+                                                        y = y + 1;
+                                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2,
+                                                                    block3, NIV);
+                                                    }
                                                 }
                                                 system("cls");
                                                 break;
@@ -361,6 +372,18 @@ int main() {
                                                             AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2,
                                                                         block3, NIV);
                                                         }
+                                                    }
+                                                    if ((x == 9 && y == 2) || (x == 8 && y == 2) ||
+                                                        (x == 7 && y == 2)||(x == 7 && y == 3) || (x == 7 && y == 4) ||
+                                                        (x == 7 && y == 5)||(x == 8 && y == 7) || (x == 8 && y == 8) ||
+                                                        (x == 8 && y == 9)||(x == 8 && y == 10) || (x == 8 && y == 11) ||
+                                                        (x == 8 && y == 12)|| (x == 8 && y == 13) || (x == 8 && y == 14) ||
+                                                        (x == 8 && y == 15)||(x == 9 && y == 17) || (x == 7 && y == 15) || (x == 6 && y == 15) ||
+                                                        (x == 6 && y == 16)||(x == 6 && y == 17) || (x == 6 && y == 18) ||
+                                                        (x == 6 && y == 19)||(x==6&&y==20)) { //bloc qui bouge pas
+                                                        y = y - 1;
+                                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2,
+                                                                    block3, NIV);
                                                     }
                                                 }
                                                 system("cls");
@@ -436,6 +459,18 @@ int main() {
                                                                         block3, NIV);
                                                         }
                                                     }
+                                                    if ((x == 9 && y == 2) || (x == 8 && y == 2) ||
+                                                        (x == 7 && y == 2)||(x == 7 && y == 3) || (x == 7 && y == 4) ||
+                                                        (x == 7 && y == 5)||(x == 8 && y == 7) || (x == 8 && y == 8) ||
+                                                        (x == 8 && y == 9)||(x == 8 && y == 10) || (x == 8 && y == 11) ||
+                                                        (x == 8 && y == 12)|| (x == 8 && y == 13) || (x == 8 && y == 14) ||
+                                                        (x == 8 && y == 15)||(x == 9 && y == 17) || (x == 7 && y == 15) || (x == 6 && y == 15) ||
+                                                        (x == 6 && y == 16)||(x == 6 && y == 17) || (x == 6 && y == 18) ||
+                                                        (x == 6 && y == 19)||(x==6&&y==20)) { //bloc qui bouge pas
+                                                        x=x+ 1;
+                                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2,
+                                                                    block3, NIV);
+                                                    }
                                                 }
                                                 system("cls");
                                                 break;
@@ -501,6 +536,18 @@ int main() {
                                                             AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2,
                                                                         block3, NIV);
                                                         }
+                                                    }
+                                                    if ((x == 9 && y == 2) || (x == 8 && y == 2) ||
+                                                        (x == 7 && y == 2)||(x == 7 && y == 3) || (x == 7 && y == 4) ||
+                                                        (x == 7 && y == 5)||(x == 8 && y == 7) || (x == 8 && y == 8) ||
+                                                        (x == 8 && y == 9)||(x == 8 && y == 10) || (x == 8 && y == 11) ||
+                                                        (x == 8 && y == 12)|| (x == 8 && y == 13) || (x == 8 && y == 14) ||
+                                                        (x == 8 && y == 15)||(x == 9 && y == 17) || (x == 7 && y == 15) || (x == 6 && y == 15) ||
+                                                        (x == 6 && y == 16)||(x == 6 && y == 17) || (x == 6 && y == 18) ||
+                                                        (x == 6 && y == 19)||(x==6&&y==20)) { //bloc qui bouge pas
+                                                        x=x-1;
+                                                        AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2,
+                                                                    block3, NIV);
                                                     }
                                                 }
                                                 system("cls");
