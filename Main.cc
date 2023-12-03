@@ -26,6 +26,7 @@ int main() {
         } Partie;
 
         int A;
+        int P;
         int G = 0;
         int Ret = 0;
         int x, y;
@@ -94,20 +95,24 @@ int PartieP4[6];
                             case 3411:
                                 NIV = 1;
                                 niv = 1;
+                                    P=1;
                                 break;
                             case 8574:
                                 NIV = 2;
                                 niv = 2;
+                                    P=2;
                                    
                                 break;
                             case 9251:
                                 NIV = 3;
                                 niv = 3;
+                                    P=3;
                                 
                                 break;
                             case 7719:
                                 NIV = 4;
                                 niv = 4;
+                                    P=4
                                   
                                 break;
                             default:
@@ -668,7 +673,7 @@ int PartieP4[6];
                                                 printf("\t\tSi vous voulez sauvegarder votre avancee appuyez sur la touche u\n");
                                                 touche = getch();*
                                                         SauvegardePartie(PartieP1,Vie,Score,NIV,Z,x,y);
-                                                    SauvegarderFichierPartie(PartieP1,1);
+                                                    SauvegarderFichierPartie(PartieP1,P);
                                                 /*system("cls");*/
                                                     
 
