@@ -112,7 +112,7 @@ int PartieP4[6];
                             case 7719:
                                 NIV = 4;
                                 niv = 4;
-                                    P=4
+                                    P=4;
                                   
                                 break;
                             default:
