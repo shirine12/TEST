@@ -31,6 +31,12 @@ int main() {
         int x, y;
         int Vie;
         int NIV=2;
+        int choixmdp;
+        int retour1;
+        int retour2;
+        int retour3;
+        int retour4;
+        int mdp;
 
 
         //Début du jeu
@@ -64,8 +70,27 @@ int main() {
                     }
                     break;
 
+                case 2:
 
-                case 2 :
+                       do{ system("cls");
+                  printf("Veuillez entrez un mot de passe, si celui ci correspond a un niveau, vous y serez redirige\n");
+                  scanf("%d", &mdp);}while(mdp!=3411);
+                    if(mdp==3411){
+                        NIV=1;
+                    }
+                    if(mdp==8574){
+                        NIV=2;
+                    }
+                    if(mdp==9251){
+                        NIV=3;
+                    }
+                    if(mdp==7719){
+                        NIV=4;
+                    }
+
+
+
+                case 3 :
                     printf("Commencez votre aventure! Bienvenue sur le Niveau 1.\n"
                            "Enregistrer cette partie dans un des slots disponible.\n"
                            "Appuyer sur Z pour confirmer (il vous faudra sauvegarder dans le menu pause, sinon vous perdrez vos progres).\n");
@@ -78,6 +103,7 @@ int main() {
                     int vx;
                     int vy;
                     int valid;
+                    int T,Z; //????
 
                     //Initialisation de Snoopy et la direction de la balle
                     int x, y;
@@ -408,14 +434,44 @@ int main() {
                             break;
                         }
 
-                        case 3 :
-                            printf("Entrez le mot de passe de votre partie pour y acceder :\n");
-                            valid=1;
-                        break;
-
 
                         case 4 :
-                            printf("Les mots de passe sont les suivants :\n");
+                            do{
+                                system("cls");
+                            printf("Selectionnez le mot de passe du niveau que vous voulez :\n");
+                            printf("\n\n1.Niveau 1\n2.Niveau 2\n3.Niveau 3\n4.Niveau 4\n");
+                            scanf("%d", &choixmdp);}while((choixmdp>4)||(choixmdp<0));
+                            switch(choixmdp){
+                                case 1:
+                                    while(retour1!=1) {
+                                        system("cls");
+                                        printf("le mot de passe est : 3411\n\nEntrez 1 pour revenir au menu\n");
+                                        scanf("%d", &retour1);
+                                    }
+                                    system("cls");
+                                    break;
+
+
+                                case 3 :
+                                    while(retour1!=1) {
+                                        system("cls");
+                                        printf("le mot de passe est : 9251\n\nEntrez 1 pour revenir au menu\n");
+                                        scanf("%d", &retour2);
+                                    }
+                                    system("cls");
+                                    break;
+
+                                case 4:
+                                    while(retour1!=1) {
+                                        system("cls");
+                                        printf("le mot de passe est : 7719\n\nEntrez 1 pour revenir au menu\n");
+                                        scanf("%d", &retour2);
+                                    }
+                                    system("cls");
+                                    break;
+
+
+                            }
                         break;
 
 
@@ -441,7 +497,5 @@ int main() {
 
             return 0;
 
-
-}
 
 }
