@@ -1,5 +1,3 @@
-
-
 #ifdef _WIN32
 #include "LIBRAIRIE SS PROG.h"
 #include <windows.h>
@@ -186,8 +184,7 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl],
                      (i == 8 && j == 11) ||
                     (i == 8 && j == 12)|| (i == 8 && j == 13) || (i == 8 && j == 14) ||
                     (i == 8 && j == 15)||(i == 9 && j == 17) || (i == 7 && j == 15) || (i == 6 && j == 15) ||
-                    (i == 6 && j == 16)||(i == 6 && j == 17) || (i == 6 && j == 18) ||
-                    (i == 6 && j == 19)||(i==6&&j==20)) {
+                    (i == 6 && j == 16)) {
                     printf("%c", 0xCE); //bloc bouge pas
                 }
                 if ((i == 0 && j == 10) || (i == 1 && j == 10) || (i == 2 && j == 10) ||
@@ -236,9 +233,12 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl],
                 if (i == x && j == y) {
                     printf("%c", 0xF4);
                 }
-                /*if((i==0&&j==1)||(i==9&&j==20)||(i==0&&j==20)||(i==9&&j==1)){
-                    printf("%c", 0xA9);
-                }*/
+                if (i==0&&j==3){
+                    printf("%c", 0xCA);
+                }
+                if(i==9&&j==8){
+                    printf("%c", 0xCB);
+                }
 
                 if (i == balleX && j == balleY) {
                     printf(MAGENTA_COLOR "%c", 0x9D);
@@ -256,16 +256,9 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl],
                     ||(i==6&&j==14)||(i == 6 && j == 13) || (i == 6 && j == 12) || (i ==6 && j == 11) ||
                     (i == 6 && j == 10) || (i == 6 && j == 9) || (i == 6 && j == 8) ||
                     (i == 6 && j == 7) || (i == 6 && j == 6) || (i == 6 && j == 5)) {
-                    printf("2"); //Bloc qui tue
+                    printf("8"); //Bloc qui tue
                 }
-                if (i == 5 && j == 3){
 
-                    if (block == 1) {
-                        printf(" ");
-                    } else {
-                        printf("%c", 0xFE);
-                    }
-                }
                 else {
                     printf(RESET_COLOR"");
                     printf("%c", tab[i][j]);
@@ -374,7 +367,6 @@ char MyGetch()
     (*x) += vx;
     (*y) += vy;
 }
-
 void NouveauxScores(int tab[4], int S1, int S2, int S3, int S4){
     tab[0]=S1;
     tab[1]=S2;
