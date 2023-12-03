@@ -854,10 +854,6 @@ int main() {
 
                             }
 
-
-                                if(stop==0){
-
-                                }
                             if (S == 4) {
                                 ShowConsoleCursor(TRUE);
                                 Score1 = CalculScoreNiv(S, T);
