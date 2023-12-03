@@ -39,6 +39,15 @@ int main() {
         int mdp;
         int niv=0;
 
+        int ScoreP1[4];
+int ScoreP2[4];
+int ScoreP3[4];
+int ScoreP4[4];
+
+int PartieP1[6];
+int PartieP2[6];
+int PartieP3[6];
+int PartieP4[6];
 
         //Début du jeu
         do {
