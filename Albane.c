@@ -1,3 +1,4 @@
+
 #ifdef _WIN32
 #include "LIBRAIRIE SS PROG.h"
 #include <windows.h>
@@ -166,8 +167,8 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl],
         gotoligcol(1, 0);
         for (i = 0; i < Nc; i++) {
             for (j = 0; j < Nl; j++) {
-                tab[x][y] = NULL;
-                tab[balleX][balleY] = NULL;
+                tab[x][y] = (unsigned char) NULL;
+                tab[balleX][balleY] = (unsigned char) NULL;
                 if (i == x && j == y) {
                     printf("%c", 0xF4);
                 }
@@ -177,10 +178,17 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl],
 
                 if (i == balleX && j == balleY) {
                     printf(MAGENTA_COLOR "%c", 0x9D);
-                }/*
-                if ((i == 8 && j == 5) || (i == 9 && j == 5) || (i == 1 && j == 16)) {
+                }
+                if ((i == 9 && j == 2) || (i == 8 && j == 2) ||
+                    (i == 7 && j == 2)||(i == 7 && j == 3) || (i == 7 && j == 4) ||
+                    (i == 7 && j == 5)||(i == 8 && j == 7) || (i == 8 && j == 8) ||
+                     (i == 8 && j == 11) ||
+                    (i == 8 && j == 12)|| (i == 8 && j == 13) || (i == 8 && j == 14) ||
+                    (i == 8 && j == 15)||(i == 9 && j == 17) || (i == 7 && j == 15) || (i == 6 && j == 15) ||
+                    (i == 6 && j == 16)||(i == 6 && j == 17) || (i == 6 && j == 18) ||
+                    (i == 6 && j == 19)||(i==6&&j==20)) {
                     printf("%c", 0xCE); //bloc bouge pas
-                }*/
+                }
                 if ((i == 0 && j == 10) || (i == 1 && j == 10) || (i == 2 && j == 10) ||
                     (i == 3 && j == 10) || (i == 4 && j == 10) || (i == 5 && j == 10) ||
                     (i == 5 && j == 11) || (i == 5 && j == 12) || (i == 4 && j == 12)||(i==3&&j==12)) {
