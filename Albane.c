@@ -328,3 +328,19 @@ char MyGetch()
     (*x) += vx;
     (*y) += vy;
 }
+
+void NouveauxScores(int tab[3], int S1, int S2, int S3){
+    tab[0]=S1;
+    tab[1]=S2;
+    tab[2]=S3;
+}
+
+void FichierScore(int tab[3]){
+    int i;
+    FILE* pf;
+    pf=fopen("./Scores.txt","w");
+    for ((i=0);(i<3);(i++)){
+        fprintf(pf,"%d\n",tab[i]);
+    }
+    fclose(pf);
+}
