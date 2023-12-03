@@ -375,13 +375,14 @@ char MyGetch()
     (*y) += vy;
 }
 
-void NouveauxScores(int tab[3], int S1, int S2, int S3){
+void NouveauxScores(int tab[4], int S1, int S2, int S3, int S4){
     tab[0]=S1;
     tab[1]=S2;
     tab[2]=S3;
+    tab[3]=S4
 }
 
-void FichierScore(int tab[3],int P){
+void FichierScore(int tab[4],int P){
     int i;
     FILE* pf;
     if (P==1){
