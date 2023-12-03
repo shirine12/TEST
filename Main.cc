@@ -48,6 +48,8 @@ int PartieP1[6];
 int PartieP2[6];
 int PartieP3[6];
 int PartieP4[6];
+        int T=120;
+                    int Z=0;
 
         //Début du jeu
         do {
@@ -96,14 +98,17 @@ int PartieP4[6];
                             case 8574:
                                 NIV = 2;
                                 niv = 2;
+                                   
                                 break;
                             case 9251:
                                 NIV = 3;
                                 niv = 3;
+                                
                                 break;
                             case 7719:
                                 NIV = 4;
                                 niv = 4;
+                                  
                                 break;
                             default:
                                 printf("Mot de passe incorrect. Veuillez réessayer.\n");
@@ -117,8 +122,6 @@ int PartieP4[6];
                            "Enregistrer cette partie dans un des slots disponible.\n"
                            "Appuyer sur Z pour confirmer (il vous faudra sauvegarder dans le menu pause, sinon vous perdrez vos progres).\n");
 
-                    int T=120;
-                    int Z=0;
                     int S = 0;
                     char touche;
                     int balleX = 5;
@@ -663,8 +666,11 @@ int PartieP4[6];
                                                 printf("\t\t\tVOUS AVEZ MIS EN PAUSE.\n"
                                                        "\t Appuyer a nouveau sur p pour remettre le jeu en route. \n");
                                                 printf("\t\tSi vous voulez sauvegarder votre avancee appuyez sur la touche u\n");
-                                                touche = getch();
+                                                touche = getch();*
+                                                        SauvegardePartie(PartieP1,Vie,Score,NIV,Z,x,y);
+                                                    SauvegarderFichierPartie(PartieP1,1);
                                                 /*system("cls");*/
+                                                    
 
                                                 break;
 
