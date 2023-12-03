@@ -1,4 +1,5 @@
 
+
 #ifdef _WIN32
 #include "LIBRAIRIE SS PROG.h"
 #include <windows.h>
@@ -227,6 +228,51 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl],
 
     }
     if(NIV==4){
+        gotoligcol(1, 0);
+        for (i = 0; i < Nc; i++) {
+            for (j = 0; j < Nl; j++) {
+                tab[x][y] = NULL;
+                tab[balleX][balleY] = NULL;
+                if (i == x && j == y) {
+                    printf("%c", 0xF4);
+                }
+                /*if((i==0&&j==1)||(i==9&&j==20)||(i==0&&j==20)||(i==9&&j==1)){
+                    printf("%c", 0xA9);
+                }*/
+
+                if (i == balleX && j == balleY) {
+                    printf(MAGENTA_COLOR "%c", 0x9D);
+                }
+                if ((i == 5&& j == 19) || (i == 6 && j == 19) ||
+                    (i == 7 && j == 19) || (i==8&&j==19)||(i == 8&& j == 18) || (i == 8 && j == 17)||(i == 9&& j == 15) || (i == 8 && j == 15)||(i == 7&& j == 15) || (i == 0 && j == 12)||(i == 1&& j == 12) || (i == 2 && j == 14)||(i == 1&& j == 14) || (i == 8 && j == 1)) {
+                    printf("%c", 0xCE); //bloc bouge pas
+                }
+                if ((i == 4 && j == 20) || (i == 4 && j == 90) || (i == 4 && j == 18) ||
+                    (i == 4 && j == 17) || (i == 4 && j == 16) || (i == 4 && j == 15) ||
+                    (i == 4 && j == 14) || (i == 4 && j == 13) || (i == 4 && j == 12)||
+                    (i==4&&j==11)||(i == 4 && j == 10) || (i == 4 && j == 9) || (i == 4 && j == 8) ||
+                    (i == 4 && j == 7) || (i == 4 && j == 6) || (i == 4 && j == 5) ||
+                    (i == 4 && j == 4) || (i == 4 && j == 3) || (i == 4 && j == 2)
+                    ||(i==6&&j==14)||(i == 6 && j == 13) || (i == 6 && j == 12) || (i ==6 && j == 11) ||
+                    (i == 6 && j == 10) || (i == 6 && j == 9) || (i == 6 && j == 8) ||
+                    (i == 6 && j == 7) || (i == 6 && j == 6) || (i == 6 && j == 5)) {
+                    printf("2"); //Bloc qui tue
+                }
+                if (i == 5 && j == 3){
+
+                    if (block == 1) {
+                        printf(" ");
+                    } else {
+                        printf("%c", 0xFE);
+                    }
+                }
+                else {
+                    printf(RESET_COLOR"");
+                    printf("%c", tab[i][j]);
+                }
+            }
+            printf("\n");
+        }
 
     }
     ShowConsoleCursor(FALSE);
@@ -290,8 +336,8 @@ void JeuGAGNE(int v, int S){
            "Vous avez obtenu un score de %d: \n"
            "Vous avez encore %d vies.\n"
            "Appuyez sur z pour continuer vers le niveau 2.\n",S,v);
-    while (touche!="z"){
-        touche=MyGetch;
+    while (touche!='z'){
+        touche= getch();
     }
 }
 
@@ -327,20 +373,4 @@ char MyGetch()
     tab[*x][*y]=' ';
     (*x) += vx;
     (*y) += vy;
-}
-
-void NouveauxScores(int tab[3], int S1, int S2, int S3){
-    tab[0]=S1;
-    tab[1]=S2;
-    tab[2]=S3;
-}
-
-void FichierScore(int tab[3]){
-    int i;
-    FILE* pf;
-    pf=fopen("./Scores.txt","w");
-    for ((i=0);(i<3);(i++)){
-        fprintf(pf,"%d\n",tab[i]);
-    }
-    fclose(pf);
 }
