@@ -7,7 +7,7 @@
 
 int main() {
         //Mise en place des niveaux
-        unsigned char tabNiv1[Nc][Nl] = {
+         unsigned char tabNiv1[Nc][Nl] = {
                 " 0                 0",
                 "                    ",
                 "                    ",
@@ -15,7 +15,7 @@ int main() {
                 "                    ",
                 "                    ",
                 "                    ",
-                "                    ",
+                "  XX                ",
                 "                    ",
                 " 0                 0",
         };
@@ -26,7 +26,6 @@ int main() {
         } Partie;
 
         int A;
-        int P;
         int G = 0;
         int Ret = 0;
         int x, y;
@@ -39,18 +38,17 @@ int main() {
         int retour4;
         int mdp;
         int niv=0;
+        int P;
 
-        int ScoreP1[4];
-int ScoreP2[4];
-int ScoreP3[4];
-int ScoreP4[4];
+    int ScoreP1[4];
+    int ScoreP2[4];
+    int ScoreP3[4];
+    int ScoreP4[4];
 
-int PartieP1[6];
-int PartieP2[6];
-int PartieP3[6];
-int PartieP4[6];
-        int T=120;
-                    int Z=0;
+    int PartieP1[6];
+    int PartieP2[6];
+    int PartieP3[6];
+    int PartieP4[6];
 
         //Début du jeu
         do {
@@ -68,13 +66,14 @@ int PartieP4[6];
                                "Pour reculer, appuyez sur s.\n"
                                "Pour aller vers la gauche, appuyez sur s.\n"
                                "Pour aller vers la droite, appuyez sur d.\n"
-                               "Appuyer sur P pour mettre pause.\n"
-                               "Appuyer sur k pour casser les blocs cassables.\n"
-                               "Appuyer sur m pour sauvegarder la progression. \n\n\n");
+                               "Appuyer sur P pour mettre pause (cela sauvegarde en meme temps).\n"
+                               "Appuyer sur k pour casser les blocs cassables.\n");
                         printf("Ceci est la balle : %c\n", 0x9D);
                         printf("Ceci est un bloc non poussable : %c\n", 0xCE);
-                        printf("Ceci est un bloc qui tue : %c\n", 0xB2);
-                        printf("Ceci un bloc cassable : %c\n", 0xFE);
+                        printf("Voici les deux blocs qui tuent : 8 et %c\n", 0xB2);
+                        printf("Ceci est un bloc cassable : %c\n", 0xFE);
+                        printf("Ceci est l entree d un bloc qui teleporte : %c\n", 0xCA);
+                        printf("Ceci est sa sortie : %c\n", 0xCB);
                         printf("\nAppuyer sur 1 pour retourner au menu .\n");
 
                         scanf("%d", &Ret);
@@ -95,25 +94,22 @@ int PartieP4[6];
                             case 3411:
                                 NIV = 1;
                                 niv = 1;
-                                    P=1;
+                                P=1;
                                 break;
                             case 8574:
                                 NIV = 2;
                                 niv = 2;
-                                    P=2;
-                                   
+                                P=2;
                                 break;
                             case 9251:
                                 NIV = 3;
                                 niv = 3;
-                                    P=3;
-                                
+                                P=3;
                                 break;
                             case 7719:
                                 NIV = 4;
                                 niv = 4;
-                                    P=4;
-                                  
+                                P=4;
                                 break;
                             default:
                                 printf("Mot de passe incorrect. Veuillez réessayer.\n");
@@ -127,6 +123,8 @@ int PartieP4[6];
                            "Enregistrer cette partie dans un des slots disponible.\n"
                            "Appuyer sur Z pour confirmer (il vous faudra sauvegarder dans le menu pause, sinon vous perdrez vos progres).\n");
 
+                    int T=120;
+                    int Z=0;
                     int S = 0;
                     char touche;
                     int balleX = 5;
@@ -161,14 +159,14 @@ int PartieP4[6];
                         vy = 1;
                     }
                     if(NIV==4){
-                        x=9;
-                        y=20;
+                        x=1;
+                        y=3;
                         vx=1;
                         vy=1;
                     }
 
 
-                    FILE *Save = fopen("saveNiv", "w");
+                   /* FILE *Save = fopen("saveNiv", "w");
                     int x1 = x;
                     int y1 = y;
                     int Score11 = Score1;
@@ -188,7 +186,7 @@ int PartieP4[6];
                     Score11 = Score1;
                     block1 = block;
                     balleX1 = balleX;
-                    balleY1 = balleY;
+                    balleY1 = balleY;*/
 
 
                     touche = 0;
@@ -334,10 +332,8 @@ int PartieP4[6];
                                                         (x == 8 && y == 14) ||
                                                         (x == 8 && y == 15) || (x == 9 && y == 17) ||
                                                         (x == 7 && y == 15) || (x == 6 && y == 15) ||
-                                                        (x == 6 && y == 16) || (x == 6 && y == 17) ||
-                                                        (x == 6 && y == 18) ||
-                                                        (x == 6 && y == 19) ||
-                                                        (x == 6 && y == 20)) { //bloc qui bouge pas
+                                                        (x == 6 && y == 16))
+                                                         { //bloc qui bouge pas
                                                         y = y + 1;
                                                         AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2,
                                                                     block3, NIV);
@@ -671,11 +667,10 @@ int PartieP4[6];
                                                 printf("\t\t\tVOUS AVEZ MIS EN PAUSE.\n"
                                                        "\t Appuyer a nouveau sur p pour remettre le jeu en route. \n");
                                                 printf("\t\tSi vous voulez sauvegarder votre avancee appuyez sur la touche u\n");
-                                                touche = getch();*
-                                                        SauvegardePartie(PartieP1,Vie,Score,NIV,Z,x,y);
-                                                    SauvegarderFichierPartie(PartieP1,P);
+                                                touche = getch();
+                                                /*SauvegardePartie(PartieP1,Vie,S,NIV,Z,x,y);
+                                                SauvegarderFichierPartie(PartieP1,P);*/
                                                 /*system("cls");*/
-                                                    
 
                                                 break;
 
@@ -719,6 +714,7 @@ int PartieP4[6];
                                         x = 4;
                                         y = 9;
                                         AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2, block3, NIV);
+                                        gotoligcol(1,30);
                                         printf("---GAME OVER---\n"
                                                "Il vous reste %d vies.\n"
                                                "Entrer 2 pour recommencer\n", Vie);
@@ -735,6 +731,7 @@ int PartieP4[6];
                                             x = 4;
                                             y = 9;
                                             AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2, block3, NIV);
+                                            gotoligcol(1,30);
                                             printf("---GAME OVER---\n"
                                                    "Il vous reste %d vies.\n"
                                                    "Entrer 2 pour recommencer\n", Vie);
@@ -755,6 +752,7 @@ int PartieP4[6];
                                             x = 8;
                                             y = 3;
                                             AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2, block3, NIV);
+                                            gotoligcol(1,30);
                                             printf("---GAME OVER---\n"
                                                    "Il vous reste %d vies.\n"
                                                    "Entrer 2 pour recommencer\n", Vie);
@@ -776,6 +774,7 @@ int PartieP4[6];
                                             x = 4;
                                             y = 11;
                                             AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2, block3, NIV);
+                                            gotoligcol(1,30);
                                             printf("---GAME OVER---\n"
                                                    "Il vous reste %d vies.\n"
                                                    "Entrer 2 pour recommencer\n", Vie);
@@ -801,9 +800,10 @@ int PartieP4[6];
                                             (x == 6 && y == 7) || (x == 6 && y == 6) || (x == 6 && y == 5)) {
                                             int p;
                                             Vie = Vie - 1;
-                                            x = 9;
-                                            y = 20;
+                                            x = 1;
+                                            y = 3;
                                             AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2, block3, NIV);
+                                            gotoligcol(1,30);
                                             printf("---GAME OVER---\n"
                                                    "Il vous reste %d vies.\n"
                                                    "Entrer 2 pour recommencer\n", Vie);
@@ -814,6 +814,13 @@ int PartieP4[6];
                                             S = 0;
 
                                         }
+
+                                        if(x==0&&y==3){
+                                            x=9;
+                                            y=8;
+                                            AfficherNiv(x, y, balleX, balleY, tabNiv1, block, block2, block3, NIV);
+                                        }
+
                                     }
 
 
@@ -825,6 +832,7 @@ int PartieP4[6];
                                     x = 4;
                                     y = 9;
                                     //AfficherNiv(x, y, balleX, balleY, tabNiv1, block);
+                                    gotoligcol(1,30);
                                     printf("---GAME OVER---\n"
                                            "Il vous reste %d vies.\n"
                                            "Entrer 1 pour retourner au menu\n", Vie);
@@ -908,6 +916,7 @@ int PartieP4[6];
 
                         case 5 :
                             printf("Les scores sont les suivants : \n");
+
                         break;
 
 
