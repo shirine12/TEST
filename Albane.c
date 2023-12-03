@@ -36,12 +36,11 @@ void menu(){
            "-------------------------------------------\n"
                      "\n"
            "1. Afficher les regles\n"
-           "2. Lancer une partie\n"
-           "3. Charger une partie\n"
+           "2. Charger une partie\n"
+           "3. Lancer une partie\n"
            "4. Afficher les mots de passe\n"
            "5. Afficher les scores\n"
-           "6. Reprendre depuis derniere sauvegarde\n"
-           "7. Quitter\n\n"
+           "6. Quitter\n\n"
            "-------------------------------------------\n");
     sleep(1);
     gotoligcol(0,0);
@@ -64,8 +63,8 @@ void menu(){
            "-------------------------------------------\n"
                   "\n"
            "1. Afficher les regles\n"
-           "2. Lancer une partie\n"
-           "3. Charger une partie\n"
+           "2. Charger une partie\n"
+           "3. Lancer une partie\n"
            "4. Afficher les mots de passe\n"
            "5. Afficher les scores\n"
            "6. Quitter\n\n"
@@ -76,7 +75,7 @@ void InitialiserVie(int* a) {
     *a = 3;
 }
 
-void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl], int block, int NIV) {
+void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl], int block, int block2, int block3, int NIV) {
     int i, j;
     if (NIV == 1) {
         gotoligcol(1, 0);
@@ -130,29 +129,93 @@ void AfficherNiv(int x,int y, int balleX, int balleY, unsigned char tab[Nc][Nl],
 
                 if (i == balleX && j == balleY) {
                     printf(MAGENTA_COLOR "%c", 0x9D);
-                }/*
-                if ((i == 8 && j == 5) || (i == 9 && j == 5) || (i == 1 && j == 16)) {
+                }
+                if ((i == 6 && j == 18) || (i == 7 && j == 18) ||
+                    (i == 8 && j == 18) || (i==9&&j==18)) {
                     printf("%c", 0xCE); //bloc bouge pas
-                }*/
+                }
                 if ((i ==2&& j == 1) || (i == 2 && j == 2) || (i == 2 && j == 3)||(i ==2&& j == 4) || (i == 2 && j == 5) || (i == 2 && j == 6)||(i ==2&& j == 7) || (i == 9 && j == 10) || (i == 8 && j == 11)) {
                     printf("%c", 0xB2); //Bloc qui tue
                 }
-                if ((i == 5 && j == 3)||(i==5&&j==18)) {
+                if (i == 5 && j == 3){
 
                     if (block == 1) {
                         printf(" ");
                     } else {
                         printf("%c", 0xFE);
                     }
-                } else
+                }
+                if (i==5&&j==18) {
+
+                    if (block2 == 1) {
+                        printf(" ");
+                    } else {
+                        printf("%c", 0xFE);
+                    }
+                }
+                else {
                     printf(RESET_COLOR"");
-                printf("%c", tab[i][j]);
+                    printf("%c", tab[i][j]);
+                }
             }
             printf("\n");
         }
 
     }
     if(NIV==3){
+        gotoligcol(1, 0);
+        for (i = 0; i < Nc; i++) {
+            for (j = 0; j < Nl; j++) {
+                tab[x][y] = NULL;
+                tab[balleX][balleY] = NULL;
+                if (i == x && j == y) {
+                    printf("%c", 0xF4);
+                }
+                /*if((i==0&&j==1)||(i==9&&j==20)||(i==0&&j==20)||(i==9&&j==1)){
+                    printf("%c", 0xA9);
+                }*/
+
+                if (i == balleX && j == balleY) {
+                    printf(MAGENTA_COLOR "%c", 0x9D);
+                }/*
+                if ((i == 8 && j == 5) || (i == 9 && j == 5) || (i == 1 && j == 16)) {
+                    printf("%c", 0xCE); //bloc bouge pas
+                }*/
+                if ((i == 0 && j == 10) || (i == 1 && j == 10) || (i == 2 && j == 10) ||
+                    (i == 3 && j == 10) || (i == 4 && j == 10) || (i == 5 && j == 10) ||
+                    (i == 5 && j == 11) || (i == 5 && j == 12) || (i == 4 && j == 12)||(i==3&&j==12)) {
+                    printf("%c", 0xB2); //Bloc qui tue
+                }
+                if (i==0&&j==2) {
+
+                    if (block == 1) {
+                        printf(" ");
+                    } else {
+                        printf("%c", 0xFE);
+                    }
+                }
+                if (i==1&&j==1) {
+
+                    if (block2 == 1) {
+                        printf(" ");
+                    } else {
+                        printf("%c", 0xFE);
+                    }
+                }
+                if (i==1&&j==2) {
+
+                    if (block3 == 1) {
+                        printf(" ");
+                    } else {
+                        printf("%c", 0xFE);
+                    }
+                }
+                else
+                    printf(RESET_COLOR"");
+                printf("%c", tab[i][j]);
+            }
+            printf("\n");
+        }
 
     }
     if(NIV==4){
