@@ -24,7 +24,7 @@ int main() {
             int Score1, Score2, Score3, Niv, t, Vie;
             char MDP;
         } Partie;
-
+int tabScore[3];
         int A;
         int G = 0;
         int Ret = 0;
