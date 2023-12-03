@@ -374,3 +374,69 @@ char MyGetch()
     (*x) += vx;
     (*y) += vy;
 }
+
+void NouveauxScores(int tab[3], int S1, int S2, int S3){
+    tab[0]=S1;
+    tab[1]=S2;
+    tab[2]=S3;
+}
+
+void FichierScore(int tab[3],int P){
+    int i;
+    FILE* pf;
+    if (P==1){
+        pf=fopen("./ScoresP1.txt","w");
+    }
+    if (P==2){
+        pf=fopen("./ScoresP2.txt","w");
+    }
+    if (P==3){
+        pf=fopen("./ScoresP3.txt","w");
+    }
+    if (P==4){
+        pf=fopen("./ScoresP4.txt","w");
+    }
+    for ((i=0);(i<3);(i++)){
+        fprintf(pf,"%d\n",tab[i]);
+    }
+    fclose(pf);
+}
+
+void SauvegardePartie(int tab[6], int NIV, int Vie, int Score, int T, int x, int y){
+    tab[0]=NIV;
+    tab[1]=Vie;
+    tab[2]=Score;
+    tab[3]=T;
+    tab[4]=x;
+    tab[5]=y;
+}
+
+void SauvegardeFichierPartie(int tab[6],int P){
+    int i;
+    FILE* pf;
+    if (P==1){
+        pf=fopen("./ValeursP1.txt","w");
+    }
+    if (P==2){
+        pf=fopen("./ValeursP2.txt","w");
+    }
+    if (P==3){
+        pf=fopen("./ValeursP3.txt","w");
+    }
+    if (P==4){
+        pf=fopen("./ValeursP4.txt","w");
+    }
+    for ((i=0);(i<6);(i++)){
+        fprintf(pf,"%d\n",tab[i]);
+    }
+}
+
+void OuvrirSauvegarde(int tab[6],int*  Vie, int* Score, int* NIV, int* T, int* x, int* y){
+    *NIV=tab[0];
+    *Vie=tab[1];
+    *Score=tab[2];
+    *T=tab[3];
+    *x=tab[4];
+    *y=tab[5];
+
+}
